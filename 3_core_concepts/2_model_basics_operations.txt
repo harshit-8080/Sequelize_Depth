@@ -1,0 +1,90 @@
+1.  As we know Model is ES6 class.
+
+2.  An instance of class is called object and here each object is row of table.
+
+3.  creating a row or inserting a row -> 
+
+        1.  const user = await db.user.create(student);
+        2.  console.log(user.toJSON());
+
+
+        3.  const jane = await User.create({ firstName: "Jane", lastName: "Doe" });
+        4.  Model.create is shorthand of Model.build() and Model.save()
+
+    
+4.  getting a row or instance  or getting all rows ->
+        1.  const user = await db.user.findOne({where:{id:101}});
+        
+        2.  user.address = "Delhi";
+
+        3.  await db.user.save(); // now user has "delhi" as address
+
+        4.  const users = await User.findAll(); // get all users
+
+        5.  Model.findAll({
+                attributes: ['foo', 'bar']
+            });   // specify attributes which we need to fetch
+
+        6.  Post.findAll({
+                 where: {
+                    id: [1,2,3] // Same as using `id: { [Op.in]: [1,2,3] }`
+                }
+            });
+            // SELECT ... FROM "posts" AS "post" WHERE "post"."id" IN (1, 2, 3);    
+
+        7.      
+
+
+5.  deleting a row or instance
+        1.  const result = await db.user.destroy({
+                where:{
+                    id:101
+                }
+            });
+        
+        2.  to delete all rows :-
+                // Delete everyone named "Jane"
+                await User.destroy({
+                    where: {
+                        firstName: "Jane"
+                    }
+                });
+
+
+6.  save method save only updated fields.
+
+7.  Using sequelize.fn can do aggregations
+        Example :-
+            Model.findAll({
+                attributes: [
+                        'foo',
+                        [sequelize.fn('COUNT', sequelize.col('hats')), 'n_hats'],
+                        'bar'
+                ]
+            });
+
+            // SELECT foo, COUNT(hats) AS n_hats, bar FROM ...
+
+
+8.  Update Query in Sequelize
+        Example :-
+            // Change everyone without a last name to "Doe"
+            await User.update({ lastName: "Doe" }, {
+                where: {
+                    lastName: null
+                    }
+            });            
+
+
+9.   We can use bulk create also.
+        const users = await db.user.create([obj1,obj2,obj3]);
+
+10. await db.project.findAll({ offset: 5, limit: 5 });
+
+11. await db.project.count({
+        where:{
+            id:101
+        }
+    })
+
+12. 
