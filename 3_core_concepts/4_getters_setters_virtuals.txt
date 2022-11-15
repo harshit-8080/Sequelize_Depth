@@ -1,0 +1,63 @@
+1.  Getters -> Sequelize allows you to define getters functions for attributes of our models.
+
+        Example :-
+                const User = sequelize.define('user', {
+
+                // Let's say we wanted to see every username in uppercase, even
+                // though they are not necessarily uppercase in the database itself
+
+                    username: {
+                        type: DataTypes.STRING,
+                        get() {
+                            const rawValue = this.getDataValue('username');
+                            return rawValue ? rawValue.toUpperCase() : null;
+                        }
+                    }
+                });
+
+
+                const user = User.build({ username: 'SuperUser123' });
+                console.log(user.username); // 'SUPERUSER123'
+                console.log(user.getDataValue('username')); // 'SuperUser123'
+
+
+
+
+
+2.  Setters ->  Sequelize allows you to define setters functions for attributes of our models.
+
+        Example :-
+                    const User = sequelize.define('user', {
+                        username: DataTypes.STRING,
+                            password: {
+                                type: DataTypes.STRING,
+                                set(value) {
+                                    // Storing passwords in plaintext in the database is terrible.
+                                    // Hashing the value with an appropriate cryptographic hash function is better.
+                                    this.setDataValue('password', hash(value));
+                                }
+                            }
+                    });
+
+
+
+
+
+3.  Virtual fields ->   Virtual fields are fields that Sequelize populates under the hood, but in reality they don't even exist in the database.
+        Example :-  Here fullName is Virtual column which is not in actual database.
+
+                const { DataTypes } = require("sequelize");
+
+                const User = sequelize.define('user', {
+                    firstName: DataTypes.TEXT,
+                    lastName: DataTypes.TEXT,
+                    fullName: {
+                        type: DataTypes.VIRTUAL,
+                        get() {
+                            return `${this.firstName} ${this.lastName}`;
+                        },
+                        set(value) {
+                            throw new Error('Do not try to set the `fullName` value!');
+                        }
+                    }
+                });
