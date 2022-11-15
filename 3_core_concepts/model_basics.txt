@@ -1,0 +1,84 @@
+1.  Model is the essence of Sequelize. It provides the abstraction that represents the table name and column names.
+
+2.  Sequelize do auto pluralization of model name. Like if you do model name as "user" it convert or make table name as "users".
+
+3.  Model Definition in Sequelize can be done in two ways.
+        1.  calling ->      sequelize.define(modelName, attributes, options)
+        2.  Extending ->    Model and calling init(attributes, options)
+
+4.  
+    const User = sequelize.define('User', {
+    // Model attributes are defined here
+    firstName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    lastName: {
+        type: DataTypes.STRING
+        // allowNull defaults to true
+    }
+    }, {
+    // Other model options go here
+    });
+
+
+5.  sequelize.define also internally calls Model.init
+
+
+6.  We can enforce table name as exactly same and avoid pluralization by adding below in options.
+        freezeTableName:true
+
+
+7.  Model Synchronization
+        We can sync all the models. -> db.sequelize.sync(); // This creates the table if it's doesn't exist.
+
+
+8.  Dropping Tables
+        1.  await db.user.drop(); // drop user table
+        2.  db.sequelize.drop(); // drop all Tables
+
+
+9.  By default sequelize creates createdAt and updatedAt columns. However we can control this things.
+        1.  timestaps:false; // no createdAt and updatedAt columns
+        2.  timestaps:true; createdAt:true // only createdAt not updatedAt
+
+
+10. Default Value
+        1.  By default, Sequelize assign default value "null". But we can change it.
+        2.  we can assign -> defaultValue:"john doe" while defining columns.
+        3.  defaultValue:DataTypes.NOW
+
+11. DataTypes in Sequelize.
+        1.  Every column, we define in sequelize has DataTypes define.
+
+        2.  Example :-
+                1.  DataTypes.STRING             // VARCHAR(255)
+                2.  DataTypes.STRING(1234)   
+                3.  DataTypes.BOOLEAN 
+                4.  DataTypes.INTEGER            // INTEGER
+                5.  DataTypes.BIGINT             // BIGINT
+                6.  DataTypes.BIGINT(11)
+                7.  DataTypes.DATE
+                8.  DataTypes.DATAONLY
+                9.  DataTypes.UUID
+
+
+12. Other column options.
+        
+        1. Examples :-
+            1.  allowNull:true
+            2.  defaultValue:DataTypes.NOW
+            3.  autoIncrement:true
+            4.  primaryKey: true
+        
+        2. refrence exmaple Like
+            bar_id: {
+                
+                type:DataTypes.INTEGER,
+
+                refrences:{
+                    model:Bar,
+                    key:'id'
+                }
+
+            }      
