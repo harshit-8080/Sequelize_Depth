@@ -1,0 +1,30 @@
+                                Model Querying - Finders
+
+
+1.  finder methods used to get or fetch the records.
+
+2.  findAll
+        const users = await db.user.findAll({
+            where:{
+                id:101
+            }
+        });
+
+
+3.  findByPK -> Use to fetch single row form table by using PK.
+        const user = await db.user.findByPK(101);
+
+
+3.  findOne -> Use to fetch single or first match row from table.
+        const user = await db.user.findOne({
+            where:{
+                id:101
+            }
+        });       
+
+4.  findAndCountAll -> Used to findAll and count.
+        const result = await db.user.findAndCountAll({
+            where:{
+                id:101
+            }
+        })
