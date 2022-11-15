@@ -1,0 +1,23 @@
+
+1.  Sequelize is promise based Node Js ORM tool.
+
+
+
+2.  Sequelize in ORM tool for following RDBMS.
+        1.  postgres and Maria DB
+        2.  MySQL and SQL Server
+        3.  Amazon RedShift
+        4.  Snowflake
+
+
+
+3.  Features of Sequelize
+        1.  transaction support
+        2.  relations, 
+        3.  eager 
+        4.  lazy loading
+        5.  read replication and more.
+
+
+4.  Sequelize supported in node js v.10 and above.          
+        
