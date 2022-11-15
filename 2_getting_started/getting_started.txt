@@ -1,0 +1,45 @@
+1.  Install Sequelize :-
+
+        npm install --save sequelize
+
+
+2. After installing sequelize package, We need to install driver for our database :-
+
+        npm install pg pghstore -> postgres
+        npm install mariadb
+        npm install mysql2
+
+        etc
+
+3.  Next Step will be to connect to database, We can use either of below options :-
+
+        const {Sequelize} =   require("sequelize");
+
+        const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname') 
+
+        or 
+
+        const sequelize = new Sequelize(database, username, password, {
+            host:localhost,
+            port:5432
+            dialect: postgres,
+        })     
+
+
+4.  Test the connection :- 
+
+        try{
+            await sequelize.authenticate();
+            console.log("connection established")
+        }catch(error){
+            console.log("connection failed")
+        }
+
+
+
+5.  We can close connection as well and it returns a promise.
+        sequelize.close();
+
+
+6.  By default sequelize log every sql query in console but we can control as well by make logging:false while creating sequelize instance.
+
