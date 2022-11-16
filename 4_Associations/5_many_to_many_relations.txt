@@ -1,0 +1,15 @@
+1.  To create a Many-To-Many relationship, two belongsToMany calls are used together.
+
+
+2.  // many-to-many relations
+    db.actor.belongsToMany(db.movie, {through:"actorMovies", foreignKey:"actor_id"});
+    db.movie.belongsToMany(db.actor, {through:"actorMovies", foreignKey:"movie_id"});
+
+
+3.  const follows = sequelize.define("follows", {
+        date: DataTypes.DATE
+    });
+    
+    db.follows = follows
+    db.user.belongsToMany(db.product, { through: follows, foreignKey: "userId", as: "UserProductfollows" });
+    db.product.belongsToMany(db.user, { through: follows, foreignKey: "productId", as: "UserProductfollows" });    
