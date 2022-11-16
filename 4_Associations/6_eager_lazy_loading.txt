@@ -1,0 +1,52 @@
+1.  The concepts of Eager Loading and Lazy Loading are fundamental to understand how fetching associations work in Sequelize.
+
+
+2.  Lazy Loading refers to the technique of fetching the associated data only when you really want it.
+
+
+3.  Eager Loading refers to the technique of fetching everything at once, since the beginning, with a larger query.
+
+
+4.  Example :- (Lazy Loading)
+
+    1.  Relation :-
+            Captain.hasOne(Ship);
+            Ship.belongsTo(Captain);
+
+    2.  Query :-
+            const awesomeCaptain = await Captain.findOne({
+                where: {
+                    name: "Jack Sparrow"
+                }
+            });
+    
+    3. Now We want info about his Ship.
+            const hisShip = await awesomeCaptain.getShip();
+
+
+
+5.  Example :- (Eager Loading)
+
+    1.  Relation :-
+            Captain.hasOne(Ship);
+            Ship.belongsTo(Captain);
+
+    2.  Query :-
+            const awesomeCaptain = await Captain.findOne({
+                where: {
+                        name: "Jack Sparrow"
+                },
+                include: Ship
+            });
+    
+    3. Here we have all information
+            // Now the ship comes with it
+            console.log('Name:', awesomeCaptain.name);
+            console.log('Skill Level:', awesomeCaptain.skillLevel);
+            console.log('Ship Name:', awesomeCaptain.ship.name);
+            console.log('Amount of Sails:', awesomeCaptain.ship.amountOfSails);
+
+
+
+
+
