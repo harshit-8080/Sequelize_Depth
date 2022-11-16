@@ -15,10 +15,15 @@ A.belongsToMany(B, { through: 'C', /* options */ });
 
 Take Away :-
     1.  the order of association matters, in above four cases.
+
     2.  A is called the source model and B is called the target model.
+
     3.  In sequelize, To create association We need to define in pairs.
+
         1.  To create a One-To-One relationship, the hasOne and belongsTo associations are used together.
+
         2.  To create a One-To-Many relationship, the hasMany and belongsTo associations are used together.
+        
         3.  To create a Many-To-Many relationship, two belongsToMany calls are used together.
 
 
