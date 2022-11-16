@@ -1,0 +1,17 @@
+1.  To create a One-To-Many relationship, the hasMany and belongsTo associations are used together.
+
+2.  Unlike 1 to 1 relation, Here we have only one option to place foreign key. 
+
+3.  Team.hasMany(Player);
+    Player.belongsTo(Team);
+
+4.  // one-to-many relation
+    db.team.hasMany(db.player,{
+        foreignKey:"teamID"
+    });
+    db.player.belongsTo(db.team,{
+        foreignKey:"teamID"
+    });    
+
+
+Like One-To-One relationships, ON DELETE defaults to SET NULL and ON UPDATE defaults to CASCADE.    

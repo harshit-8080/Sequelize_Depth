@@ -1,6 +1,6 @@
 1.  To create a One-To-One relationship, the hasOne and belongsTo associations are used together.
 
-
+ // In one to one relationship, We can place foreign key in any table. (either foos or bars).
 
 2.  Foo.hasOne(Bar);
     Bar.belongsTo(Foo); 
@@ -46,3 +46,6 @@
         name: 'myFooId'
     }
     });
+
+
+By default, ON DELETE defaults to SET NULL and ON UPDATE defaults to CASCADE.    
