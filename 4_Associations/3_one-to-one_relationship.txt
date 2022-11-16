@@ -1,0 +1,48 @@
+1.  To create a One-To-One relationship, the hasOne and belongsTo associations are used together.
+
+
+
+2.  Foo.hasOne(Bar);
+    Bar.belongsTo(Foo); 
+
+
+
+
+3.  //one-to-one relation
+    db.foo.hasOne(db.bar,{
+        foreignKey:"fooId"
+    });
+    db.bar.belongsTo(db.foo,{
+        foreignKey:"fooId"
+    })    
+
+
+
+
+4.  // Option 1
+    Foo.hasOne(Bar, {
+    foreignKey: 'myFooId'
+    });
+    Bar.belongsTo(Foo);
+
+    // Option 2
+    Foo.hasOne(Bar, {
+    foreignKey: {
+        name: 'myFooId'
+    }
+    });
+    Bar.belongsTo(Foo);
+
+    // Option 3
+    Foo.hasOne(Bar);
+    Bar.belongsTo(Foo, {
+    foreignKey: 'myFooId'
+    });
+
+    // Option 4
+    Foo.hasOne(Bar);
+    Bar.belongsTo(Foo, {
+    foreignKey: {
+        name: 'myFooId'
+    }
+    });
