@@ -1,0 +1,58 @@
+In sequelize provides, 4 types of associations to handle standard relations.
+
+1.  hasOne associations.
+2.  belongsTo associations.
+3.  hasMany associations.
+4.  belongsToMany associations.
+
+
+
+A.hasOne(B, { /* options */ });
+A.belongsTo(B, { /* options */ });
+A.hasMany(B, { /* options */ });
+A.belongsToMany(B, { through: 'C', /* options */ });
+
+
+Take Away :-
+    1.  the order of association matters, in above four cases.
+
+    2.  A is called the source model and B is called the target model.
+
+    3.  In sequelize, To create association We need to define in pairs.
+
+        1.  To create a One-To-One relationship, the hasOne and belongsTo associations are used together.
+
+        2.  To create a One-To-Many relationship, the hasMany and belongsTo associations are used together.
+        
+        3.  To create a Many-To-Many relationship, two belongsToMany calls are used together.
+
+
+
+
+
+1.  A.hasOne(B, { /* options */ });
+    1.  This relations means, A and B has one-to-one relations.
+    2.  A is source model and B is target model.
+    3.  The foreign key being defined in target model B.
+
+
+2.  A.belongsTo(B, { /* options */ });
+    1.  This relations means, A and B has one-to-one relations.
+    2.  A is source model and B is target model.
+    3.  The foreign key being defined in source model A.
+
+
+3.  A.hasMany(B, { /* options */ });
+    1.  This relations means, A and B has one-to-many relations.  
+    2.  A is source model and B is target model.
+    3.  The foreign key being defined in target model B.
+
+
+4.  A.belongsToMany(B, { through: 'C', /* options */ });
+    1.  The A.belongsToMany(B, { through: 'C' }) association means that a Many-To-Many relationship exists between A and B, using table C as junction table, 
+    2.  which will have the foreign keys (aId and bId, for example). 
+    3.  Sequelize will automatically create this model C (unless it already exists) and define the appropriate foreign keys on it.
+
+
+    Note: In the examples above for belongsToMany, a string ('C') was passed to the through option. 
+    In this case, Sequelize automatically generates a model with this name. However, you can also pass a model directly, if you have already defined it.      

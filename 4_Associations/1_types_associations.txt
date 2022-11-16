@@ -1,0 +1,24 @@
+Three Types of standard associations or relationship in computer science.
+
+
+1.  one-to-one.
+        1.  In this relationship, A and B in which one element of A only be linked to one element of B, and vice versa.
+        2.  Example :-  A country has only one capital city, and a capital city is the capital of only one country.
+        3.  In RD, when one row in a table linked with only one row in another table and vice versa.
+
+
+
+2.  one-to-many.
+        1.  In this relationship, A and B in which an element of A may be linked to many elements of B, but a member of B is linked to only one element of A.
+        2.  Example :-  A as books, and B as pages. A book can have many pages, but a page can only be in one book.
+        3.  In RD, when one row in table A may be linked with many rows in table B, but one row in table B is linked to only one row in table A      
+
+
+
+3.  many-to-many.  
+        1.  In this relationship, Multiple element of A linked to Multiple element of B.
+        2.  Example :-  A as Authors, and B as Books. An Author can write several Books, and a Book can be written by several Authors.
+        3.  In RD, when many row in table A may linked to many row in table B.
+
+
+
