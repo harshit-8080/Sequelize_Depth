@@ -1,0 +1,72 @@
+1.  Eager Loading is the act of querying data of several models at once (one 'main' model and one or more associated models).
+
+2.  Fetching an aliases associations :- 
+
+        const users = await User.findAll({
+
+            include: { 
+                model: Tool, 
+                as: 'Instruments' 
+            }
+        });
+        console.log(JSON.stringify(users, null, 2));
+
+
+3. Required eager loading  (By default sequelize do left outer join but we can do inner join using required option inside include)
+        
+        User.findAll({
+            include: {
+                model: Task,
+                required: true
+            }
+        });
+
+4.  By default sequelize do left outer join, But we configure it do it right outer join and inner join as well.
+
+        1.  If mention reauired:true, Then Inner join will happen.
+        2.  If mention right:true, Then right outer join will happen.
+        3.  Example :-
+
+                User.findAll({
+                    include: [{
+                        model: Task,
+                        right: true // will create a right join
+                    }]
+                });
+
+                User.findAll({
+                    include: [{
+                        model: Task,
+                        required: true,
+                        right: true // has no effect, will create an inner join
+                    }]
+                });
+
+                User.findAll({
+                    include: [{
+                        model: Task,
+                        where: { name: { [Op.ne]: 'empty trash' } },
+                        right: true // has no effect, will create an inner join
+                    }]
+                });
+
+                User.findAll({
+                    include: [{
+                        model: Tool,
+                        where: { name: { [Op.ne]: 'empty trash' } },
+                        required: false // will create a left join
+                    }]
+                });
+
+                User.findAll({
+                    include: [{
+                        model: Tool,
+                        where: { name: { [Op.ne]: 'empty trash' } },
+                        required: false
+                        right: true // will create a right join
+                    }]
+                });
+
+
+                // Fetch all models associated with User
+                User.findAll({ include: { all: true }});
