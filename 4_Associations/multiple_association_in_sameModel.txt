@@ -1,0 +1,9 @@
+1.  In Sequelize, it is possible to define multiple associations between the same models. 
+
+2.  You just have to define different aliases for them.
+
+3.  Example :-
+    
+    Team.hasOne(Game, { as: 'HomeTeam', foreignKey: 'homeTeamId' });
+    Team.hasOne(Game, { as: 'AwayTeam', foreignKey: 'awayTeamId' });
+    Game.belongsTo(Team);
