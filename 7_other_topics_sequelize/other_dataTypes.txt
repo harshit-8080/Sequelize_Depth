@@ -1,0 +1,27 @@
+1.  ARRAY as DataTypes
+
+    // For example -> VARCHAR(255)[]
+    DataTypes.ARRAY(DataTypes.STRING)
+
+    // VARCHAR(255)[][]
+    DataTypes.ARRAY(DataTypes.ARRAY(DataTypes.STRING))
+
+
+
+2.  BLOBS as DataTypes -> allows us insert data as string and buffer. BUT while retrieving it always retrieve as buffers.
+
+    DataTypes.BLOB                // BLOB (bytea for PostgreSQL)
+    DataTypes.BLOB('tiny')        // TINYBLOB (bytea for PostgreSQL)
+    DataTypes.BLOB('medium')      // MEDIUMBLOB (bytea for PostgreSQL)
+    DataTypes.BLOB('long')        // LONGBLOB (bytea for PostgreSQL)
+
+
+
+3.  ENUMs as DataTypes
+
+    DataTypes.ENUM('foo', 'bar','goo') // An ENUM with allowed values 'foo' or 'bar'  or 'goo'
+
+
+
+
+4.  PostgreSQL also supports a JSONB data type: DataTypes.JSONB    
