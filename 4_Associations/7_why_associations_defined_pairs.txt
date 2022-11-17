@@ -1,0 +1,25 @@
+            We deine associations in pairs because of following condition :-
+
+
+1.  If we define only once then only source model will get to know about associations.
+2.  And we define in pairs both model will get to know about associations.
+
+3.  Example :-
+
+    1.  Relationship exist something like 
+        db.team.hasOne(db.player);
+        db.player.belongsTo(db.team)
+
+    2.  So now, Both source and target model knows about associations. Then now we can do
+
+            1.  const team = await db.team.findAll({
+                     include:db.player
+                })
+            
+
+            2.  const playerInfo = await db.player.findAll({
+                    include:{
+                        model:db.team,
+                        attributes:["team_name"]
+                    }
+                })     
