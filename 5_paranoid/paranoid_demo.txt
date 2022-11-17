@@ -1,0 +1,68 @@
+1. A paranoid table is one that, when told to delete a record, it will not truly delete it. 
+
+2.  Instead, a special column called deletedAt will have its value set to the timestamp of that deletion request.
+
+3.  This means that paranoid tables perform a soft-deletion of records, instead of a hard-deletion.
+
+4.  How to define table or model as paranoid :-
+
+        module.exports = (sequelize,Sequelize) => {
+
+            const Product = sequelize.define("product",{
+                
+                productName:{
+                    type:DataTypes.STRING,
+                    allowNull:false
+                },
+                price:{
+                    type:DataTypes.INTEGER,
+                    allowNull:false
+                }
+            },{
+
+                paranoid:true
+
+            })
+
+            return Product
+        }
+
+5.  Now if destroy it will do soft delete 
+
+        // UPDATE "posts" SET "deletedAt"=[timestamp] WHERE "deletedAt" IS NULL AND "id" = 1
+        const result = await db.product.destroy({
+            where:{
+                id:10
+            }
+        })
+
+6.  To do hard delete, we need to use force:true  
+
+        // DELETE FROM "posts" WHERE "id" = 1
+        const result = await db.product.destroy({
+            where:{
+                id:10
+            },
+            force:true
+        })     
+
+
+7.  Now if you fetch records using findAll or findByK or findOne. -> It will not show soft deleted rows.
+
+
+
+
+8.  To get soft deleted rows as well in results -> we need to use paranoid:false in fetch queries.
+        
+        const products = await db.product.findAll({
+            paranoid:false
+        })
+
+
+
+9.  To restore all soft deleted rows, We need to use restore query
+
+    const restoredProducts = await db.product.restore();
+
+    // Above query will restore all product which are soft deleted  
+
