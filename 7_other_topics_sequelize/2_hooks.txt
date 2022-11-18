@@ -1,0 +1,51 @@
+1.  
+    Hooks (also known as lifecycle events).
+       
+        beforeCreate(instance, options)
+        beforeDestroy(instance, options)
+        beforeUpdate(instance, options)
+        beforeSave(instance, options)
+        beforeUpsert(values, options)
+
+        afterCreate(instance, options)
+        afterDestroy(instance, options)
+        afterUpdate(instance, options)
+        afterSave(instance, options)
+        afterUpsert(created, options)
+
+
+
+
+2.  
+    const { DataTypes } = require("sequelize");
+    const { sequelize, Sequelize } = require(".");
+    const bcrypt = require('bcrypt');
+    const saltRounds = 10;
+
+
+    module.exports = (sequelize, Sequelize) =>{
+
+        const Admin = sequelize.define("admin",{
+
+            email:{
+                type:DataTypes.STRING
+            },
+            password:{
+                type:DataTypes.STRING
+            }
+        },
+        {
+            hooks:{
+                beforeCreate: async (admin)=>{
+                    admin.password = await bcrypt.hashSync(admin.password,saltRounds);
+                }
+            }
+        })
+
+        Admin.prototype.printInstance = async () => {
+
+            return "printInstance is called";
+            
+        }
+        return Admin
+    }
