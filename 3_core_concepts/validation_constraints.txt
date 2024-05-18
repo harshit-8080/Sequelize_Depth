@@ -1,15 +1,18 @@
 Pre attributes validations
 
+
 1.  const User = sequelize.define("user",{
 
-        name:{
+        name: {
+
             type:DataTypes.STRING,
             allowNull:false,
             unique:true,
             autoIncrement:true,
             defaultValue:"john doe",
             primaryKey:true,
-            validate:{
+            validate: { 
+                
                 isEmail: true,            // checks for email format (foo@bar.com)
                 isUrl: true,              // checks for url format (https://foo.com)
                 isIP: true,               // checks for IPv4 (129.89.23.1) or IPv6 format
