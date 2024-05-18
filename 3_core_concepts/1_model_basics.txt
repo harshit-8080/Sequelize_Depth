@@ -1,8 +1,12 @@
-1.  Model is the essence of Sequelize. It provides the abstraction that represents the table name and column names.
+Model is the essence of Sequelize. 
 
-2.  Sequelize do auto pluralization of model name. Like if you do model name as "user" it convert or make table name as "users".
+It provides the abstraction that represents the table name and column names.
 
-3.  Model Definition in Sequelize can be done in two ways.
+Sequelize do auto pluralization of model name. 
+
+Like if you do model name as "user" it convert or make table name as "users".
+
+Model Definition in Sequelize can be done in two ways.
         1.  calling ->      sequelize.define(modelName, attributes, options)
         2.  Extending ->    Model and calling init(attributes, options)
 
